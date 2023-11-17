@@ -1,29 +1,16 @@
 package ccwc
 
 import (
-	"bufio"
-	"io"
-	"log"
-	"os"
+	"bytes"
 	"strings"
 )
 
-func GetNumberOfBytes(filepath string) int {
-	file, closer := openFile(filepath)
-	defer closer()
-
-	filebytes, err := io.ReadAll(file)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return len(filebytes)
+func GetNumberOfBytes(text []byte) int {
+	return len(text)
 }
 
-func GetNumberOfLines(filepath string) int {
-	file, closer := openFile(filepath)
-	defer closer()
-
-	reader := bufio.NewReader(file)
+func GetNumberOfLines(text []byte) int {
+	reader := bytes.NewBuffer(text)
 	var lines []string
 	for {
 		line, err := reader.ReadString('\n')
@@ -35,33 +22,11 @@ func GetNumberOfLines(filepath string) int {
 	return len(lines)
 }
 
-func GetNumberOfWords(filepath string) int {
-	file, closer := openFile(filepath)
-	defer closer()
-
-	filebytes, err := io.ReadAll(file)
-	if err != nil {
-		log.Fatal(err)
-	}
-	words := strings.Fields(string(filebytes))
+func GetNumberOfWords(text []byte) int {
+	words := strings.Fields(string(text))
 	return len(words)
 }
 
-func GetNumberOfCharacters(filepath string) int {
-	file, closer := openFile(filepath)
-	defer closer()
-
-	filebytes, err := io.ReadAll(file)
-	if err != nil {
-		log.Fatal(err)
-	}
-	return len([]rune(string(filebytes)))
-}
-
-func openFile(filepath string) (*os.File, func()) {
-	file, err := os.Open(filepath)
-	if err != nil {
-		log.Fatalf("%s: no such file or directory", filepath)
-	}
-	return file, func() { file.Close() }
+func GetNumberOfCharacters(text []byte) int {
+	return len([]rune(string(text)))
 }

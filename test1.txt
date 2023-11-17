@@ -1,0 +1,4 @@
+Pass the remainder of the command line (everything after -args)
+to the test binary, uninterpreted and unchanged.
+Because this flag consumes the remainder of the command line,
+the package list (if present) must appear before this flag.
