@@ -19,20 +19,20 @@ func main() {
 	if *c {
 		numOfBytes := ccwc.GetNumberOfBytes(*filepath)
 		fmt.Printf("%v %s", numOfBytes, *filepath)
-	}
-
-	if *l {
+	} else if *l {
 		numOfLines := ccwc.GetNumberOfLines(*filepath)
 		fmt.Printf("%v %s", numOfLines, *filepath)
-	}
-
-	if *w {
+	} else if *w {
 		numOfWords := ccwc.GetNumberOfWords(*filepath)
 		fmt.Printf("%v %s", numOfWords, *filepath)
-	}
-
-	if *m {
+	} else if *m {
 		numOfChars := ccwc.GetNumberOfCharacters(*filepath)
 		fmt.Printf("%v %s", numOfChars, *filepath)
+	} else {
+		numOfBytes := ccwc.GetNumberOfBytes(*filepath)
+		numOfLines := ccwc.GetNumberOfLines(*filepath)
+		numOfWords := ccwc.GetNumberOfWords(*filepath)
+		fmt.Printf("%v %v %v %s", numOfBytes, numOfLines, numOfWords, *filepath)
+
 	}
 }
