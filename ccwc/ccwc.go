@@ -8,7 +8,7 @@ import (
 	"strings"
 )
 
-func GetNumberOfCharacters(filepath string) int {
+func GetNumberOfBytes(filepath string) int {
 	file, closer := openFile(filepath)
 	defer closer()
 
@@ -45,6 +45,17 @@ func GetNumberOfWords(filepath string) int {
 	}
 	words := strings.Fields(string(filebytes))
 	return len(words)
+}
+
+func GetNumberOfCharacters(filepath string) int {
+	file, closer := openFile(filepath)
+	defer closer()
+
+	filebytes, err := io.ReadAll(file)
+	if err != nil {
+		log.Fatal(err)
+	}
+	return len([]rune(string(filebytes)))
 }
 
 func openFile(filepath string) (*os.File, func()) {

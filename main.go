@@ -10,14 +10,15 @@ func main() {
 	c := flag.Bool("c", false, "print the byte counts")
 	l := flag.Bool("l", false, "print the newline counts")
 	w := flag.Bool("w", false, "print the word counts")
+	m := flag.Bool("m", false, "print the character counts")
 
 	filepath := flag.String("file", "test.txt", "")
 
 	flag.Parse()
 
 	if *c {
-		numOfChars := ccwc.GetNumberOfCharacters(*filepath)
-		fmt.Printf("%v %s", numOfChars, *filepath)
+		numOfBytes := ccwc.GetNumberOfBytes(*filepath)
+		fmt.Printf("%v %s", numOfBytes, *filepath)
 	}
 
 	if *l {
@@ -28,5 +29,10 @@ func main() {
 	if *w {
 		numOfWords := ccwc.GetNumberOfWords(*filepath)
 		fmt.Printf("%v %s", numOfWords, *filepath)
+	}
+
+	if *m {
+		numOfChars := ccwc.GetNumberOfCharacters(*filepath)
+		fmt.Printf("%v %s", numOfChars, *filepath)
 	}
 }

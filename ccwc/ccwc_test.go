@@ -5,11 +5,11 @@ import (
 	"wctool/ccwc"
 )
 
-func TestGetNumberOfCharacters(t *testing.T) {
+func TestGetNumberOfBytes(t *testing.T) {
 	t.Parallel()
 	filepath := "../test.txt"
 	want := 342190
-	got := ccwc.GetNumberOfCharacters(filepath)
+	got := ccwc.GetNumberOfBytes(filepath)
 	if want != got {
 		t.Errorf("want %v, got %v", want, got)
 	}
@@ -30,6 +30,16 @@ func TestGetNumberOfWords(t *testing.T) {
 	filepath := "../test.txt"
 	want := 58164
 	got := ccwc.GetNumberOfWords(filepath)
+	if want != got {
+		t.Errorf("want %v, got %v", want, got)
+	}
+}
+
+func TestGetNumberOfCharacters(t *testing.T) {
+	t.Parallel()
+	filepath := "../test.txt"
+	want := 339292
+	got := ccwc.GetNumberOfCharacters(filepath)
 	if want != got {
 		t.Errorf("want %v, got %v", want, got)
 	}
