@@ -7,11 +7,11 @@ import (
 )
 
 func main() {
-	m := flag.Bool("m", true, "print the byte counts")
+	c := flag.Bool("c", true, "print the byte counts")
 	filepath := flag.String("file", "test.txt", "")
 	flag.Parse()
 
-	if *m {
+	if *c {
 		filebytes := ccwc.GetNumberOfCharacters(*filepath)
 		fmt.Printf("%v %s", filebytes, *filepath)
 	}
